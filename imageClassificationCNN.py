@@ -70,10 +70,10 @@ model.add(Dropout(0.2))
 model.add(BatchNormalization())
 model.add(Dense(num_class, activation = 'softmax'))
 
-model.compile(loss='categorical_crossentropy', optimizer = 'adam', metrics = ['accuracy'])
+model.compile(loss='categorical_crossentropy', optimizer=tf.keras.optimizers.Adam(learning_rate=0.01), metrics = ['accuracy'] )
 model.summary()
 
-history = model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=20, batch_size=64 , callbacks=[EarlyStopping(patience=5)])
+history = model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=30, batch_size=64 , callbacks=[EarlyStopping(patience=5)] )
 for key,val in history.history.items():
   print(key)
   
